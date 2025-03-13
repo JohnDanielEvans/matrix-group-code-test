@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  db:
+    platform: linux/amd64
+    container_name: ${APP_HOSTNAME}_mysql${MYSQL_VERSION}
+    image: mysql:${MYSQL_VERSION}
+    volumes:
+      - ./data/:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+  wordpress:
+    platform: linux/amd64
+    container_name: ${APP_HOSTNAME}_wordpress${WORDPRESS_VERSION}
+    depends_on:
+      - db
+    build:
+      context: ./wordpress
+      args:
+        - WORDPRESS_VERSION=${WORDPRESS_VERSION}
+    volumes:
+      - ../src/wp-content:/var/www/html/wp-content
+      - ../src/config/environments:/var/www/html/config/environments
+      - ../src/config/application.php:/var/www/html/config/application.php
+      - ../docker/.env:/var/www/html/config/.env
+      - ../src/vendor:/var/www/html/vendor
+      - ../src/composer.json:/var/www/html/composer.json
+      - ../src/composer.lock:/var/www/html/composer.lock
+      - ../src/index.php:/var/www/html/index.php
+      - ../src/wp-config.php:/var/www/html/wp-config.php
+      - ../src/.htaccess:/var/www/html/.htaccess
+    ports:
+      - "80:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
