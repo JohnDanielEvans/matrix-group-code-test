@@ -39,7 +39,7 @@ Follow these steps to initialize your project:
 5. **Install Composer Dependencies:**
 
    ```bash
-   docker run --rm -it --platform=linux/amd64 -v $(pwd)/src:/wp-content composer /bin/bash -c "composer install --ignore-platform-reqs"
+   docker run --rm -it --platform=linux/amd64 -v $(pwd)/src:/app composer /bin/bash -c "composer install --ignore-platform-reqs"
    ```
 
 ## Accessing the Site

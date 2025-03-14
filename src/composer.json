@@ -1,50 +1,43 @@
 {
-  "repositories": {
-      "0": {
-          "type": "composer",
-          "url": "https://wpackagist.org",
-          "only": [
-              "wpackagist-plugin/*",
-              "wpackagist-theme/*"
-          ]
-      }
-  },
-  "require": {
-      "vlucas/phpdotenv": "^5.3",
-      "oscarotero/env": "^2.1",
-      "roots/bedrock-autoloader": "^1.0",
-      "roots/bedrock-disallow-indexing": "^2.0",
-      "roots/wp-config": "1.0.0",
-      "roots/wp-password-bcrypt": "1.1.0",
-      "roots/acorn": "^2.0",
-      "wpackagist-plugin/classic-editor": "*",
-      "acf/advanced-custom-fields": "*"
-  },
-  "require-dev": {
-      "squizlabs/php_codesniffer": "^3.6.0",
-      "roave/security-advisories": "dev-latest"
-  },
-  "config": {
-      "optimize-autoloader": true,
-      "preferred-install": "dist",
-      "allow-plugins": {
-          "composer/installers": true,
-          "wikimedia/composer-merge-plugin": true
-      }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-      "post-root-package-install": [
-          "php -r \"copy('.env.example', '.env');\""
-      ],
-      "test": [
-          "phpcs"
-      ],
-      "install-sage": [
-          "composer create-project roots/sage ./wp-content/themes/base-theme",
-          "mkdir ./wp-content/themes/base-theme/vendor/roots/",
-          "cp -r ./vendor/roots/acorn ./wp-content/themes/base-theme/vendor/roots/acorn"
-      ]
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "oscarotero/env": "^2.1",
+        "roots/bedrock-autoloader": "^1.0",
+        "roots/bedrock-disallow-indexing": "^2.0",
+        "roots/wp-config": "1.0.0",
+        "roots/wp-password-bcrypt": "1.1.0",
+        "wpackagist-plugin/classic-editor": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/installers": true,
+            "wikimedia/composer-merge-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "test": [
+            "phpcs"
+        ],
+        "install-sage": [
+            "composer create-project roots/sage ./wp-content/themes/base-theme",
+            "mkdir ./wp-content/themes/base-theme/vendor/roots/"        ]
+    }
   }
-}
+  
