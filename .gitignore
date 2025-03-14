@@ -14,12 +14,10 @@ src/wp-content/uploads/*
 
 mu-plugins/
 
-src/app/themes/*
-!src/app/themes/base-theme/
 
 src/wp-content/themes/*
 !src/wp-content/themes/.gitkeep
-!src/app/themes/base-theme/
+!src/app/wp-content/themes/base-theme/
 
 
 
@@ -29,7 +27,7 @@ src/vendor/*
 !src/vendor/.gitkeep
 docker/data/*
 !docker/data/.gitkeep
-docker/mysql-dump/*
+# docker/mysql-dump/* commenting this off for code test purposes, but wouldn't want to commit this in a real project
 !docker/mysql-dump/.gitkeep
 
 .env
