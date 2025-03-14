@@ -30,7 +30,7 @@ docker/data/*
 # docker/mysql-dump/* commenting this off for code test purposes, but wouldn't want to commit this in a real project
 !docker/mysql-dump/.gitkeep
 
-.env
+# .env commenting this off for code test purposes, but wouldn't want to commit this in a real project
 
 # Node artifact files
 node_modules/
